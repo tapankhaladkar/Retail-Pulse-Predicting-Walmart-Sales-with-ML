@@ -49,7 +49,7 @@ with no missing values, no duplicate rows and no gaps in the weekly series.
 .
 ├── Walmart.csv                      # Source dataset (6,435 × 8)
 ├── Walmart.ipynb                    # EDA + forecasting notebook
-├── Capstone Report - Walmart.pdf    # Written project report
+├── REPORT.md                        # Written project report and findings
 ├── requirements.txt                 # Pinned runtime dependencies
 ├── LICENSE                          # MIT
 └── README.md
@@ -136,9 +136,9 @@ weeks.
 
 ---
 
-## 🚧 Status & Roadmap
+## 🚧 Status
 
-This repository is undergoing a correctness and reproducibility pass:
+Correctness and reproducibility pass, complete:
 
 - [x] **Repository hygiene** — license, dependency manifest, `.gitignore`, accurate documentation,
       removal of stray `nbconvert` export artifacts.
@@ -150,8 +150,18 @@ This repository is undergoing a correctness and reproducibility pass:
       from a clean clone.
 - [x] **Evaluation** — MAE / RMSE / MAPE on two chronological holdout windows, benchmarked against
       naive and seasonal-naive baselines, plus feature importance.
-- [ ] **Findings** — re-derive the written conclusions and store rankings in
-      `Capstone Report - Walmart.pdf` from the corrected notebook output.
+- [x] **Findings** — conclusions and store rankings re-derived from the corrected notebook
+      output and rewritten as [`REPORT.md`](REPORT.md). The original PDF was removed: it was a
+      compiled artifact with no source in the repository, and its store rankings, CPI
+      interpretation and forecast description were contradicted by the corrected analysis.
+
+## 📑 Full Report
+
+[`REPORT.md`](REPORT.md) carries the complete write-up: exploratory findings, methodology,
+validation results, the reasons the model fails on the seasonal peak, and operational
+recommendations.
+
+---
 
 ## 📄 License
 
