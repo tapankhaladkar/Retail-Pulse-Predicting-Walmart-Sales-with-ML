@@ -123,6 +123,25 @@ Because the requested horizon (Nov 2012–Jan 2013) falls in window B, the noteb
 Random Forest forecast and a seasonal-naive reference, and recommends the latter for the holiday
 weeks.
 
+---
+
+## 🏬 Store Performance
+
+Mean weekly sales vary **6.2×** between the top and bottom five stores.
+
+| Top 5 | Mean weekly sales | Bottom 5 | Mean weekly sales |
+|---|---|---|---|
+| Store 20 | $2,107,677 | Store 33 | $259,862 |
+| Store 4 | $2,094,713 | Store 44 | $302,749 |
+| Store 14 | $2,020,978 | Store 5 | $318,012 |
+| Store 13 | $2,003,620 | Store 36 | $373,512 |
+| Store 2 | $1,925,751 | Store 38 | $385,732 |
+
+Size is not the same as reliability. Ranked by coefficient of variation, the most **consistent**
+stores are 37 (4.2%), 30 (5.2%) and 43 (6.4%) — all mid-to-small performers. A planner optimising
+for predictable replenishment should treat them separately from the high-volume, high-variance
+stores.
+
 ## 💻 Tech Stack
 
 ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
@@ -135,25 +154,6 @@ weeks.
 ![Jupyter](https://img.shields.io/badge/Jupyter-F37626?style=for-the-badge&logo=jupyter&logoColor=white)
 
 ---
-
-## 🚧 Status
-
-Correctness and reproducibility pass, complete:
-
-- [x] **Repository hygiene** — license, dependency manifest, `.gitignore`, accurate documentation,
-      removal of stray `nbconvert` export artifacts.
-- [x] **Notebook correctness** — reads the CSV from the repository root, removed the target leakage
-      in the rolling-mean feature, replaced the random train/test split with a chronological
-      holdout, fixed the recursive forecast loop so calendar features advance across the horizon,
-      carried exogenous values forward per store rather than globally, applied the real holiday
-      calendar, and restored a working Matplotlib style call. The notebook now executes end to end
-      from a clean clone.
-- [x] **Evaluation** — MAE / RMSE / MAPE on two chronological holdout windows, benchmarked against
-      naive and seasonal-naive baselines, plus feature importance.
-- [x] **Findings** — conclusions and store rankings re-derived from the corrected notebook
-      output and rewritten as [`REPORT.md`](REPORT.md). The original PDF was removed: it was a
-      compiled artifact with no source in the repository, and its store rankings, CPI
-      interpretation and forecast description were contradicted by the corrected analysis.
 
 ## 📑 Full Report
 
