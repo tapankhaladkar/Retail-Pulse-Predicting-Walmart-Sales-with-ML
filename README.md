@@ -96,14 +96,32 @@ The exploratory analysis addresses five questions:
 To forecast the **next 12 weeks** of sales:
 
 - **Model:** `RandomForestRegressor` (scikit-learn), trained **separately for each of the 45 stores**.
-- **Features:** calendar features (`Month`, `Week`, `Day_of_Week`), external factors
-  (`Temperature`, `Fuel_Price`, `CPI`, `Unemployment`, `Holiday_Flag`) and autoregressive features
-  (`Sales_Lag1`, `Sales_Lag2`, `Sales_Rolling_Mean`).
-- **Forecasting strategy:** recursive multi-step — each predicted week is fed back in as the lag
-  feature for the next week.
-- **Metric reported:** R² score.
+- **Features:** calendar (`Month`, `Week`), external factors (`Temperature`, `Fuel_Price`, `CPI`,
+  `Unemployment`, `Holiday_Flag`) and autoregressive features (`Sales_Lag1`, `Sales_Lag2`,
+  `Sales_Rolling_Mean`, `Sales_Lag52`).
+- **Forecasting strategy:** recursive multi-step — each predicted week is fed back as the next
+  week's lag, with calendar features advancing and the holiday flag taken from the real calendar.
+- **Validation:** chronological holdout (never a random split), scored with MAE / RMSE / MAPE
+  against naive and seasonal-naive baselines on two windows.
 
----
+### Results
+
+| Window | Naive | Seasonal naive | **Random Forest** |
+|---|---|---|---|
+| **A** — Aug–Oct 2012 (no major holiday) | 6.01% | 5.46% | **3.88%** ✅ |
+| **B** — Nov 2011–Jan 2012 (Thanksgiving + Christmas) | 13.79% | **6.25%** ✅ | 11.06% |
+
+*MAPE, lower is better. Winner in bold.*
+
+**The model wins on ordinary weeks and loses on the seasonal peak.** The dataset spans 143 weeks
+and contains only two November–December periods, so a holdout starting in November leaves no prior
+holiday season in training. `Sales_Lag52` carries 63% of feature importance and lag features 78% in
+total — this is a smoothed-persistence forecaster with a year-over-year anchor, and it cannot
+manufacture a +68% spike it has never observed.
+
+Because the requested horizon (Nov 2012–Jan 2013) falls in window B, the notebook reports both the
+Random Forest forecast and a seasonal-naive reference, and recommends the latter for the holiday
+weeks.
 
 ## 💻 Tech Stack
 
@@ -120,23 +138,20 @@ To forecast the **next 12 weeks** of sales:
 
 ## 🚧 Status & Roadmap
 
-This repository is undergoing a correctness and reproducibility pass. Completed and outstanding
-work, in order:
+This repository is undergoing a correctness and reproducibility pass:
 
 - [x] **Repository hygiene** — license, dependency manifest, `.gitignore`, accurate documentation,
       removal of stray `nbconvert` export artifacts.
-- [ ] **Notebook correctness** — remove the hardcoded local CSV path, replace the removed
-      `plt.style.use('seaborn')` style call, fix target leakage in the rolling-mean feature, replace
-      the random train/test split with a chronological one, and correct the recursive forecast loop
-      so calendar features advance across the 12-week horizon.
-- [ ] **Evaluation** — add MAE / RMSE / MAPE on a held-out final 12 weeks, benchmarked against naive
-      and seasonal-naive baselines.
-- [ ] **Findings** — re-derive the written conclusions and store rankings from the corrected
-      notebook output.
-
-Until the second item lands, the committed notebook will not execute end to end from a clean clone.
-
----
+- [x] **Notebook correctness** — reads the CSV from the repository root, removed the target leakage
+      in the rolling-mean feature, replaced the random train/test split with a chronological
+      holdout, fixed the recursive forecast loop so calendar features advance across the horizon,
+      carried exogenous values forward per store rather than globally, applied the real holiday
+      calendar, and restored a working Matplotlib style call. The notebook now executes end to end
+      from a clean clone.
+- [x] **Evaluation** — MAE / RMSE / MAPE on two chronological holdout windows, benchmarked against
+      naive and seasonal-naive baselines, plus feature importance.
+- [ ] **Findings** — re-derive the written conclusions and store rankings in
+      `Capstone Report - Walmart.pdf` from the corrected notebook output.
 
 ## 📄 License
 
