@@ -78,6 +78,11 @@ Mean weekly sales vary **6.2×** between the top and bottom five stores.
 | 4 | Store 13 | $2,003,620 | | Store 36 | $373,512 |
 | 5 | Store 2 | $1,925,751 | | Store 38 | $385,732 |
 
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="figures/store-performance-dark.png">
+  <img alt="Mean weekly sales for all 45 stores ranked, with the top five and bottom five highlighted" src="figures/store-performance.png">
+</picture>
+
 Size is not the same as reliability. Ranked by coefficient of variation, the most
 *consistent* stores are 37 (4.2%), 30 (5.2%) and 43 (6.4%) — all mid-to-small performers.
 A planner optimising for predictable replenishment should treat these separately from the
@@ -96,6 +101,11 @@ against January's $923,885. The weekly view is far more actionable than the mont
 | 51 (pre-Christmas) | $1,754,774 | **+67.6%** | **No** |
 | 52 (Christmas) | $960,833 | −8.2% | Yes |
 
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="figures/weekly-seasonality-dark.png">
+  <img alt="Mean weekly sales by ISO week, with holiday-flagged weeks highlighted" src="figures/weekly-seasonality.png">
+</picture>
+
 **The single largest trading week of the year — week 51, at +67.6% — is not flagged as a
 holiday, while Christmas week itself, which runs 8% *below* average, is.** Anyone using
 `Holiday_Flag` as a demand signal without checking this will plan the peak backwards.
@@ -111,6 +121,11 @@ aggregate hides four unrelated events:
 | Super Bowl | +3.6% |
 | Labor Day | +0.1% |
 | Christmas week | **−7.7%** |
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="figures/holiday-decomposition-dark.png">
+  <img alt="Sales versus non-holiday weeks for each flagged event: Thanksgiving +41.3%, Super Bowl +3.6%, Labor Day +0.1%, Christmas week −7.7%" src="figures/holiday-decomposition.png">
+</picture>
 
 Effectively the entire "holiday effect" is Thanksgiving. Treating the flag as a single
 binary feature averages a +41% event together with a −8% one.
@@ -191,6 +206,11 @@ against 4.97% for per-store models on the same recursive task.
 | **A** — Aug–Oct 2012 | 6.01% | 5.46% | **3.88%** |
 | **B** — Nov 2011–Jan 2012 | 13.79% | **6.25%** | 11.06% |
 
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="figures/backtest-dark.png">
+  <img alt="Actual versus Random Forest and seasonal-naive forecasts across both validation windows" src="figures/backtest.png">
+</picture>
+
 **Window A.** The model beats both baselines comfortably. On ordinary trading weeks it earns
 its place.
 
@@ -209,6 +229,11 @@ elevated.
 | `CPI` | 0.054 |
 | `Sales_Rolling_Mean` | 0.046 |
 | remaining seven | < 0.04 each |
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="figures/feature-importance-dark.png">
+  <img alt="Mean feature importance across the 45 per-store models, led by Sales_Lag52 at 0.63" src="figures/feature-importance.png">
+</picture>
 
 Lag features account for **78%** of total importance; external factors (temperature, fuel,
 CPI, unemployment) for **13%**. The model is fundamentally a smoothed-persistence forecaster

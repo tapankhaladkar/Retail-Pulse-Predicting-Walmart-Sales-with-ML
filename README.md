@@ -113,6 +113,11 @@ To forecast the **next 12 weeks** of sales:
 
 *MAPE, lower is better. Winner in bold.*
 
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="figures/backtest-dark.png">
+  <img alt="12-week backtest: Random Forest beats the baselines on an ordinary window and loses to seasonal naive on the holiday window" src="figures/backtest.png">
+</picture>
+
 **The model wins on ordinary weeks and loses on the seasonal peak.** The dataset spans 143 weeks
 and contains only two November–December periods, so a holdout starting in November leaves no prior
 holiday season in training. `Sales_Lag52` carries 63% of feature importance and lag features 78% in
@@ -122,6 +127,19 @@ manufacture a +68% spike it has never observed.
 Because the requested horizon (Nov 2012–Jan 2013) falls in window B, the notebook reports both the
 Random Forest forecast and a seasonal-naive reference, and recommends the latter for the holiday
 weeks.
+
+---
+
+## 📅 Seasonality
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="figures/weekly-seasonality-dark.png">
+  <img alt="Mean weekly sales by ISO week: week 51 is the largest week of the year at +68% and is not flagged as a holiday, while Christmas week is flagged and runs 8% below average" src="figures/weekly-seasonality.png">
+</picture>
+
+The largest trading week of the year — **ISO week 51, at +67.6%** — is not flagged by
+`Holiday_Flag`, while Christmas week, which runs 8% *below* average, is. Anyone using the flag as a
+demand signal without checking this will plan the peak backwards.
 
 ---
 
