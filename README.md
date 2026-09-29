@@ -1,82 +1,147 @@
-# Retail-Pulse-Predicting-Walmart-Sales-with-ML
+# 📊 Retail Pulse: Predicting Walmart Sales with Data Science 🚀
 
-# 📊 Retail Pulse: Predicting Walmart Sales with Data Science 🚀  
+![Retail Forecasting](https://img.shields.io/badge/Retail-Forecasting-blue)
+![Machine Learning](https://img.shields.io/badge/Machine%20Learning-Regression-orange)
+![Python](https://img.shields.io/badge/Python-Data%20Science-brightgreen)
+![License](https://img.shields.io/badge/License-MIT-yellow)
 
-![Retail Forecasting](https://img.shields.io/badge/Retail-Forecasting-blue)  
-![Machine Learning](https://img.shields.io/badge/Machine%20Learning-Regression-orange)  
-![Python](https://img.shields.io/badge/Python-Data%20Science-brightgreen)  
+## 📌 Project Overview
 
-## 📌 Project Overview  
-Retail businesses often struggle with **inventory management** and **sales forecasting** due to fluctuating economic conditions. This project **analyzes and predicts Walmart's weekly sales** across multiple stores using **Exploratory Data Analysis (EDA), Statistical Analysis, and Machine Learning Models**.  
+Retail businesses often struggle with **inventory management** and **sales forecasting** due to
+fluctuating economic conditions. This project **analyzes and forecasts Walmart's weekly sales**
+across 45 stores using **Exploratory Data Analysis, statistical analysis, and a machine learning
+regression model**.
 
-🚀 **Objectives of this project:**  
-✔️ Identify key factors affecting sales (e.g., unemployment, CPI, temperature).  
-✔️ Detect seasonal sales trends and top-performing stores.  
-✔️ Predict **next 12 weeks of sales** for each store using **predictive modeling**.  
+🚀 **Objectives of this project:**
 
----
-
-## 📂 Dataset Description  
-The dataset used in this project is **Walmart Sales Data**, containing **6,435 rows** and **8 columns**.  
-
-| **Feature**        | **Description** |
-|--------------------|----------------|
-| `Store`           | Store number (unique identifier) |
-| `Date`            | Week of sales |
-| `Weekly_Sales`    | Sales for the given store in that week |
-| `Holiday_Flag`    | If it is a holiday week (1 = Yes, 0 = No) |
-| `Temperature`     | Temperature on the sale day |
-| `Fuel_Price`      | Cost of fuel in the region |
-| `CPI`            | Consumer Price Index |
-| `Unemployment`   | Unemployment Rate |
+- ✔️ Identify key factors affecting sales (unemployment, CPI, temperature, fuel price).
+- ✔️ Detect seasonal sales trends and rank store performance.
+- ✔️ Forecast the **next 12 weeks of sales** for each store.
 
 ---
 
-## 🔎 Data Analysis & Insights  
-✔️ **Does unemployment affect sales?**  
-→ Analyzed stores most impacted by unemployment fluctuations.  
+## 📂 Dataset Description
 
-✔️ **Do sales follow a seasonal trend?**  
-→ Identified peak sales periods & trends based on **time-series analysis**.  
+The dataset is **Walmart Sales Data** (`Walmart.csv`), containing **6,435 rows** and **8 columns** —
+45 stores observed weekly (every Friday) from **2010-02-05 to 2012-10-26**, 143 weeks per store,
+with no missing values, no duplicate rows and no gaps in the weekly series.
 
-✔️ **How does temperature impact sales?**  
-→ Correlated temperature fluctuations with store performance.  
+| **Feature**    | **Description**                                        |
+|----------------|--------------------------------------------------------|
+| `Store`        | Store number (unique identifier)                        |
+| `Date`         | Week of sales (`DD-MM-YYYY`)                            |
+| `Weekly_Sales` | Sales for the given store in that week                  |
+| `Holiday_Flag` | Whether it is a holiday week (1 = Yes, 0 = No)          |
+| `Temperature`  | Temperature in the region that week (°F)                |
+| `Fuel_Price`   | Cost of fuel in the region                              |
+| `CPI`          | Consumer Price Index                                    |
+| `Unemployment` | Unemployment rate                                       |
 
-✔️ **Consumer Price Index (CPI) Influence**  
-→ Examined CPI impact on store revenue over time.  
-
-✔️ **Best & Worst Performing Stores**  
-→ Ranked stores based on **historical sales trends**.  
-
----
-
-## 📊 Predictive Modeling  
-To forecast sales for the **next 12 weeks**, the following models were used:  
-
-- **Linear Regression** 📈  
-- **Random Forest Regressor** 🌳  
-- **XGBoost Regression** ⚡  
-- **ARIMA for Time Series Forecasting** ⏳  
-
-**Model Evaluation Metrics:**  
-✔️ Mean Absolute Error (MAE)  
-✔️ Root Mean Squared Error (RMSE)  
-✔️ R² Score  
+> The dataset is the widely circulated public "Walmart Store Sales" extract, included here for
+> reproducibility. It is redistributed for educational use; the MIT license in this repository
+> covers the code and documentation, not the underlying data.
 
 ---
 
-## 💻 Tech Stack  
-![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)  
-![Pandas](https://img.shields.io/badge/Pandas-150458?style=for-the-badge&logo=pandas&logoColor=white)  
-![NumPy](https://img.shields.io/badge/NumPy-013243?style=for-the-badge&logo=numpy&logoColor=white)  
-![Matplotlib](https://img.shields.io/badge/Matplotlib-11557C?style=for-the-badge&logo=matplotlib&logoColor=white)  
-![Seaborn](https://img.shields.io/badge/Seaborn-008080?style=for-the-badge&logoColor=white)  
-![Plotly](https://img.shields.io/badge/Plotly-3F4F75?style=for-the-badge&logo=plotly&logoColor=white)  
-![Scikit-Learn](https://img.shields.io/badge/Scikit--Learn-F7931E?style=for-the-badge&logo=scikitlearn&logoColor=white)  
-![XGBoost](https://img.shields.io/badge/XGBoost-FF6600?style=for-the-badge&logo=xgboost&logoColor=white)  
-![Statsmodels](https://img.shields.io/badge/Statsmodels-2C5E4E?style=for-the-badge&logoColor=white)  
-![ARIMA](https://img.shields.io/badge/ARIMA-005571?style=for-the-badge&logo=statsmodels&logoColor=white)  
-![Prophet](https://img.shields.io/badge/Prophet-006699?style=for-the-badge&logoColor=white)  
+## 🗂️ Repository Structure
+
+```
+.
+├── Walmart.csv                      # Source dataset (6,435 × 8)
+├── Walmart.ipynb                    # EDA + forecasting notebook
+├── Capstone Report - Walmart.pdf    # Written project report
+├── requirements.txt                 # Pinned runtime dependencies
+├── LICENSE                          # MIT
+└── README.md
+```
 
 ---
 
+## ⚡ Getting Started
+
+```bash
+git clone https://github.com/tapankhaladkar/Retail-Pulse-Predicting-Walmart-Sales-with-ML.git
+cd Retail-Pulse-Predicting-Walmart-Sales-with-ML
+
+python -m venv .venv
+source .venv/bin/activate        # Windows: .venv\Scripts\activate
+pip install -r requirements.txt
+
+jupyter lab Walmart.ipynb
+```
+
+Then run the notebook top to bottom. `Walmart.csv` is read from the repository root, so no path
+configuration is needed.
+
+---
+
+## 🔎 Data Analysis & Insights
+
+The exploratory analysis addresses five questions:
+
+- ✔️ **Does unemployment affect sales?** — Pearson correlation computed *per store* (with p-values)
+  rather than pooled across stores, since mean weekly sales differ ~8x between the largest and smallest store.
+- ✔️ **Do sales follow a seasonal trend?** — Monthly and weekly aggregation, plus holiday-week
+  comparison.
+- ✔️ **How does temperature impact sales?** — Overall correlation, quartile buckets, and store-level
+  correlations.
+- ✔️ **How does CPI affect sales?** — Store-level correlation and linear-regression slope.
+- ✔️ **Best and worst performing stores** — Ranked by mean weekly sales, with coefficient of
+  variation as a consistency measure and a separate holiday-period ranking.
+
+---
+
+## 📊 Predictive Modeling
+
+To forecast the **next 12 weeks** of sales:
+
+- **Model:** `RandomForestRegressor` (scikit-learn), trained **separately for each of the 45 stores**.
+- **Features:** calendar features (`Month`, `Week`, `Day_of_Week`), external factors
+  (`Temperature`, `Fuel_Price`, `CPI`, `Unemployment`, `Holiday_Flag`) and autoregressive features
+  (`Sales_Lag1`, `Sales_Lag2`, `Sales_Rolling_Mean`).
+- **Forecasting strategy:** recursive multi-step — each predicted week is fed back in as the lag
+  feature for the next week.
+- **Metric reported:** R² score.
+
+---
+
+## 💻 Tech Stack
+
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Pandas](https://img.shields.io/badge/Pandas-150458?style=for-the-badge&logo=pandas&logoColor=white)
+![NumPy](https://img.shields.io/badge/NumPy-013243?style=for-the-badge&logo=numpy&logoColor=white)
+![SciPy](https://img.shields.io/badge/SciPy-8CAAE6?style=for-the-badge&logo=scipy&logoColor=white)
+![Matplotlib](https://img.shields.io/badge/Matplotlib-11557C?style=for-the-badge&logo=matplotlib&logoColor=white)
+![Seaborn](https://img.shields.io/badge/Seaborn-008080?style=for-the-badge&logoColor=white)
+![Scikit-Learn](https://img.shields.io/badge/Scikit--Learn-F7931E?style=for-the-badge&logo=scikitlearn&logoColor=white)
+![Jupyter](https://img.shields.io/badge/Jupyter-F37626?style=for-the-badge&logo=jupyter&logoColor=white)
+
+---
+
+## 🚧 Status & Roadmap
+
+This repository is undergoing a correctness and reproducibility pass. Completed and outstanding
+work, in order:
+
+- [x] **Repository hygiene** — license, dependency manifest, `.gitignore`, accurate documentation,
+      removal of stray `nbconvert` export artifacts.
+- [ ] **Notebook correctness** — remove the hardcoded local CSV path, replace the removed
+      `plt.style.use('seaborn')` style call, fix target leakage in the rolling-mean feature, replace
+      the random train/test split with a chronological one, and correct the recursive forecast loop
+      so calendar features advance across the 12-week horizon.
+- [ ] **Evaluation** — add MAE / RMSE / MAPE on a held-out final 12 weeks, benchmarked against naive
+      and seasonal-naive baselines.
+- [ ] **Findings** — re-derive the written conclusions and store rankings from the corrected
+      notebook output.
+
+Until the second item lands, the committed notebook will not execute end to end from a clean clone.
+
+---
+
+## 📄 License
+
+Released under the [MIT License](LICENSE).
+
+## 👤 Author
+
+**Tapan Khaladkar** — [GitHub](https://github.com/tapankhaladkar)
